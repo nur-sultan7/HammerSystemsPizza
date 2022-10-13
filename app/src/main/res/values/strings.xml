@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Hammer Systems Pizza</string>
+    <string name="title_menu">Меню</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_basket">Корзина</string>
+    <string name="banner2">banner2</string>
+    <string name="banner1">banner1</string>
+</resources>
