@@ -2,6 +2,9 @@ package com.example.hammersystemspizza.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import com.ahmadhamwi.tabsync.TabbedListMediator
+import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.data.ContentData
 import com.example.hammersystemspizza.databinding.ActivityMainBinding
 import com.example.hammersystemspizza.data.entities.Category
@@ -18,20 +21,37 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(binding.toolbar)
         setContentView(binding.root)
         initRV()
         initTabLayout()
+        initMediator()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     private fun initRV() {
-        binding.contentInclude.rvContent.adapter = CategoriesAdapter(contentData)
+        binding.contentScrolling.rvContent.adapter = CategoriesAdapter(contentData)
+    }
 
+    private fun initMediator() {
+        with(binding) {
+            TabbedListMediator(
+                contentScrolling.rvContent,
+                contentScrolling.tabLayoutMenu,
+                contentData.indices.toList(),
+                true
+            ).attach()
+        }
     }
 
     private fun initTabLayout() {
         for (category in contentData) {
-            binding.contentInclude.tabLayoutMenu.addTab(
-                binding.contentInclude.tabLayoutMenu.newTab().setText(category.name)
+            binding.contentScrolling.tabLayoutMenu.addTab(
+                binding.contentScrolling.tabLayoutMenu.newTab().setText(category.name)
             )
         }
     }
