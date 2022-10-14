@@ -1,14 +1,12 @@
 package com.example.hammersystemspizza.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.data.ContentData
 import com.example.hammersystemspizza.databinding.ActivityMainBinding
-import com.example.hammersystemspizza.data.entities.Category
-import com.example.hammersystemspizza.data.entities.Item
 import com.example.hammersystemspizza.presentation.adapters.CategoriesAdapter
 
 class MainActivity : AppCompatActivity() {
