@@ -16,14 +16,13 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private lateinit var viewModel: PizzasViewModel
+    private val viewModel: PizzasViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory(application)
+        )[PizzasViewModel::class.java]
+    }
 
-    //    private val viewModel3: PizzasViewModel by lazy {
-//        ViewModelProvider(
-//            this,
-//            ViewModelProvider.AndroidViewModelFactory(application)
-//        )[PizzasViewModel::class.java]
-//    }
     private val adapter by lazy {
         CategoriesAdapter()
     }
@@ -33,16 +32,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.toolbar)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory(application)
-        )[PizzasViewModel::class.java]
         initRV()
-        initTabLayout()
-        initMediator()
         viewModel.getPizzasData().observe(this) {
             adapter.setListOfCategories(viewModel.putItemsInCategory(CategoryName.Pizza.name, it))
         }
+        initTabLayout()
+        initMediator()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
