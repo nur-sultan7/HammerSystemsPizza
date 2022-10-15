@@ -3,7 +3,6 @@ package com.example.hammersystemspizza.data.network
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 object ApiFactory {
     private const val BASE_URL = "https://pizza-and-desserts.p.rapidapi.com/"
 
