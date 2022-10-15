@@ -1,14 +1,20 @@
 package com.example.hammersystemspizza.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hammersystemspizza.data.entities.Category
+import com.example.hammersystemspizza.domain.entities.Category
 import com.example.hammersystemspizza.databinding.ItemCategoryBinding
 
 
-class CategoriesAdapter(private val listOfCategories: List<Category>) :
-    RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+    private var listOfCategories = mutableListOf<Category>()
+
+    fun setListOfCategories(listOfCategories: List<Category>) {
+        this.listOfCategories = listOfCategories.toMutableList()
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder.create(parent)
@@ -33,9 +39,7 @@ class CategoriesAdapter(private val listOfCategories: List<Category>) :
         companion object {
             fun create(view: ViewGroup): CategoryViewHolder {
                 val viewBinding = ItemCategoryBinding.inflate(
-                    LayoutInflater.from(view.context),
-                    view,
-                    false
+                    LayoutInflater.from(view.context), view, false
                 )
                 return CategoryViewHolder(viewBinding)
             }

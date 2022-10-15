@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.hammersystemspizza.R
-import com.example.hammersystemspizza.data.ContentData
 import com.example.hammersystemspizza.databinding.ActivityMainBinding
+import com.example.hammersystemspizza.domain.entities.CategoryName
 import com.example.hammersystemspizza.presentation.adapters.CategoriesAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -16,22 +16,32 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-    private val viewModel: PizzasViewModel by lazy {
-        ViewModelProvider(
-            this,
-            ViewModelProvider.AndroidViewModelFactory(application)
-        )[PizzasViewModel::class.java]
+    private lateinit var viewModel: PizzasViewModel
+//    private val viewModel3: PizzasViewModel by lazy {
+//        ViewModelProvider(
+//            this,
+//            ViewModelProvider.AndroidViewModelFactory(application)
+//        )[PizzasViewModel::class.java]
+//    }
+    private val adapter by lazy {
+        CategoriesAdapter()
     }
-    private val contentData = ContentData.getData()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.toolbar)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory(application)
+        )[PizzasViewModel::class.java]
         initRV()
         initTabLayout()
         initMediator()
-        viewModel.loadPizzasData()
+        viewModel.getPizzasData().observe(this) {
+            adapter.setListOfCategories(viewModel.putItemsInCategory(CategoryName.Pizza.name, it))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -40,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initRV() {
-        binding.contentScrolling.rvContent.adapter = CategoriesAdapter(contentData)
+        binding.contentScrolling.rvContent.adapter = adapter
     }
 
     private fun initMediator() {
@@ -48,14 +58,14 @@ class MainActivity : AppCompatActivity() {
             TabbedListMediator(
                 contentScrolling.rvContent,
                 contentScrolling.tabLayoutMenu,
-                contentData.indices.toList(),
+                viewModel.categoriesItems.indices.toList(),
                 true
             ).attach()
         }
     }
 
     private fun initTabLayout() {
-        for (category in contentData) {
+        for (category in CategoryName.values()) {
             binding.contentScrolling.tabLayoutMenu.addTab(
                 binding.contentScrolling.tabLayoutMenu.newTab().setText(category.name)
             )

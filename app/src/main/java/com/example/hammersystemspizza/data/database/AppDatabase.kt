@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.hammersystemspizza.data.database.model.PizzaInfoModel
-import com.nursultan.cryptoapp.data.database.PizzasInfoDao
 
 
 @Database(

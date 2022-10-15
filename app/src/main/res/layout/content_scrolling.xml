@@ -16,9 +16,12 @@
 
         app:layout_anchor="@+id/rv_content"
         app:layout_anchorGravity="top|center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorAnimationMode="elastic"
-        app:tabMode="scrollable" />
+        app:tabMode="scrollable"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_content"

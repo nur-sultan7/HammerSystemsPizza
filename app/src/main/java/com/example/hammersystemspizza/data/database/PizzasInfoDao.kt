@@ -1,4 +1,4 @@
-package com.nursultan.cryptoapp.data.database
+package com.example.hammersystemspizza.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -10,6 +10,9 @@ interface PizzasInfoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPizzasInfoList(priceList: List<PizzaInfoModel>)
+
+    @Query("select * from pizzas_list order by id asc")
+    fun getPizzasListAsc(): LiveData<List<PizzaInfoModel>>
 
 //    @Query("select * from full_price_list order by price desc")
 //    fun getPriceListDesc(): LiveData<List<CoinInfoDbModel>>
