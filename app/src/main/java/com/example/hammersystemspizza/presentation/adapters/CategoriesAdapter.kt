@@ -1,11 +1,10 @@
 package com.example.hammersystemspizza.presentation.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.hammersystemspizza.domain.entities.Category
 import com.example.hammersystemspizza.databinding.ItemCategoryBinding
+import com.example.hammersystemspizza.domain.entities.Category
 
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
