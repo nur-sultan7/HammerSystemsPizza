@@ -3,6 +3,7 @@ package com.example.hammersystemspizza.presentation
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.data.ContentData
@@ -15,6 +16,12 @@ class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+    private val viewModel: PizzasViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelProvider.AndroidViewModelFactory(application)
+        )[PizzasViewModel::class.java]
+    }
     private val contentData = ContentData.getData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         initRV()
         initTabLayout()
         initMediator()
+        viewModel.loadPizzasData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

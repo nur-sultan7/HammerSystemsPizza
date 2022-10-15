@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +26,11 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="androidx.work.WorkManagerInitializer"
+            tools:node="remove"
+            tools:replace="android:authorities" />
     </application>
 
 </manifest>
