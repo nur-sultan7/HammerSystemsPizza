@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
     private lateinit var viewModel: PizzasViewModel
-//    private val viewModel3: PizzasViewModel by lazy {
+
+    //    private val viewModel3: PizzasViewModel by lazy {
 //        ViewModelProvider(
 //            this,
 //            ViewModelProvider.AndroidViewModelFactory(application)

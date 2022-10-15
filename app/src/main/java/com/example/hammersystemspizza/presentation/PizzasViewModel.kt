@@ -3,15 +3,14 @@ package com.example.hammersystemspizza.presentation
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.hammersystemspizza.data.database.AppDatabase
 import com.example.hammersystemspizza.data.mapper.PizzaMapper
 import com.example.hammersystemspizza.data.network.ApiFactory
 import com.example.hammersystemspizza.data.repository.PizzasRepositoryImp
-import com.example.hammersystemspizza.domain.usecases.LoadPizzasDataUseCase
-import com.example.hammersystemspizza.data.database.AppDatabase
 import com.example.hammersystemspizza.domain.entities.Category
-import com.example.hammersystemspizza.domain.entities.CategoryName
 import com.example.hammersystemspizza.domain.entities.PizzaInfo
 import com.example.hammersystemspizza.domain.usecases.GetPizzasDataUseCase
+import com.example.hammersystemspizza.domain.usecases.LoadPizzasDataUseCase
 import kotlinx.coroutines.launch
 
 class PizzasViewModel(application: Application) : AndroidViewModel(application) {
@@ -28,6 +27,7 @@ class PizzasViewModel(application: Application) : AndroidViewModel(application) 
             loadPizzasDataUseCase.invoke()
         }
     }
+
     @JvmName("getPizzasData1")
     fun getPizzasData() = getPizzasDataUseCase.invoke()
 

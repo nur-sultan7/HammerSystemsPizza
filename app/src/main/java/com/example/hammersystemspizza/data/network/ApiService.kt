@@ -1,8 +1,6 @@
 package com.example.hammersystemspizza.data.network
 
 import com.example.hammersystemspizza.data.model.PizzaInfoDto
-import com.example.hammersystemspizza.data.model.PizzasContainerDto
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 
