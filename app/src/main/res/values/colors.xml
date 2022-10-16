@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="pinky">#FD3A69</color>
+    <color name="pinky_light">#20FD3A69</color>
     <color name="black_txt">#222831</color>
     <color name="gray_description_text">#AAAAAD</color>
+    <color name="gray_tab_text">#C3C4C9</color>
 </resources>

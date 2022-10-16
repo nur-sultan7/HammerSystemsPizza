@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 interface ApiService {
 
     @Headers(
-        "X-RapidAPI-Key: c342e2d9cbmshd2b60fa37178413p13dc4djsn7998f70fdddc",
+        "X-RapidAPI-Key: f0502f1283msh87f20c119074be9p13a267jsndb1b2593519d",
         "X-RapidAPI-Host: pizza-and-desserts.p.rapidapi.com"
     )
     @GET("pizzas")

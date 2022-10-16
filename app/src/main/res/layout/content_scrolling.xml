@@ -3,22 +3,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    >
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
-
         app:layout_anchor="@+id/rv_content"
         app:layout_anchorGravity="top|center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tabIndicator="@drawable/rounded_corners"
         app:tabIndicatorAnimationMode="elastic"
         app:tabMode="scrollable"
         tools:ignore="SpeakableTextPresentCheck" />
