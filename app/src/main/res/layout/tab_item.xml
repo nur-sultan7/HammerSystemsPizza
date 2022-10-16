@@ -26,6 +26,7 @@
             android:fontFamily="@font/sf_ui_display"
             android:textColor="@color/gray_tab_text"
             android:textSize="13sp"
+            android:textFontWeight="600"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
