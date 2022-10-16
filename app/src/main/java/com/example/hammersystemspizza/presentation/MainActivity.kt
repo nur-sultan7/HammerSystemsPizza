@@ -12,10 +12,10 @@ import com.example.hammersystemspizza.presentation.adapters.CategoriesAdapter
 
 class MainActivity : AppCompatActivity() {
 
-
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
     private val viewModel: PizzasViewModel by lazy {
         ViewModelProvider(
             this,
@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private val adapter by lazy {
         CategoriesAdapter()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

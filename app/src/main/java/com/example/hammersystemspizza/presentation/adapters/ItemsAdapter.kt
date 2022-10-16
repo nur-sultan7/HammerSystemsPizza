@@ -3,6 +3,7 @@ package com.example.hammersystemspizza.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.databinding.ItemItemBinding
 import com.example.hammersystemspizza.domain.entities.PizzaInfo
 import com.squareup.picasso.Picasso
@@ -33,9 +34,13 @@ class ItemsAdapter(
             {
                 tvItemName.text = item.name
                 tvDescription.text = item.description
-                tvPrice.text = item.price.toString()
+                tvPrice.text = String.format(
+                    binding.root.context.getString(R.string.price_txt),
+                    item.price
+                )
                 Picasso.get()
                     .load(item.img)
+                    .placeholder(R.drawable.img_default_pizza)
                     .into(ivItem)
             }
         }
