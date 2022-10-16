@@ -52,14 +52,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textColor="@color/gray_description_text"
                 android:textFontWeight="400"
                 android:textSize="14sp"
-                android:textColor="@color/gray_description_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tvItemName"
                 app:layout_constraintTop_toBottomOf="@+id/tvItemName"
-                tools:text="Лосось, томаты, оливки,соус песто,помидорки черри"
-                tools:targetApi="p" />
+                tools:ignore="TextContrastCheck"
+                tools:targetApi="p"
+                tools:text="Лосось, томаты, оливки,соус песто,помидорки черри" />
 
             <TextView
                 android:id="@+id/tvPrice"
@@ -75,6 +76,7 @@
                 android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+                tools:ignore="TextContrastCheck"
                 tools:text="от 345 р" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
