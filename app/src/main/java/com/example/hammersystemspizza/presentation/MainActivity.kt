@@ -7,11 +7,13 @@ import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.databinding.ActivityMainBinding
 import com.example.hammersystemspizza.domain.entities.CategoryName
+import com.example.hammersystemspizza.domain.entities.ItemInfo
 import com.example.hammersystemspizza.presentation.adapters.CategoriesAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     private val adapter by lazy {
         CategoriesAdapter()
     }
+    private var tabbedListMediator: TabbedListMediator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +43,30 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         setContentView(binding.root)
         initRV()
-        viewModel.getPizzasData().observe(this) {
-            adapter.setListOfCategories(viewModel.putItemsInCategory(CategoryName.Pizza.name, it))
-        }
+        setObservers()
         initTabLayout()
-        initMediator()
         initSpinnerInToolbar()
+    }
+
+    private fun setObservers() {
+        val pizzasLiveData = viewModel.getPizzasData()
+        val dessertsLiveData = viewModel.getDessertsData()
+        pizzasLiveData.observe(this) {
+            adapter.clearCategoryList()
+            adapter.addCategoryToList(viewModel.getCategory(CategoryName.Pizza.name, it))
+            dessertsLiveData.observe(this, object : Observer<List<ItemInfo>> {
+                override fun onChanged(t: List<ItemInfo>?) {
+                    adapter.addCategoryToList(
+                        viewModel.getCategory(
+                            CategoryName.Dessert.name,
+                            t ?: emptyList()
+                        )
+                    )
+                    initMediator()
+                    dessertsLiveData.removeObserver(this)
+                }
+            })
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -59,12 +80,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun initMediator() {
         with(binding) {
-            TabbedListMediator(
+            tabbedListMediator?.detach()
+            tabbedListMediator = TabbedListMediator(
                 contentScrolling.rvContent,
                 contentScrolling.tabLayoutMenu,
-                viewModel.categoriesItems.indices.toList(),
+                adapter.listOfCategories.indices.toList(),
                 true
-            ).attach()
+            )
+            tabbedListMediator?.attach()
         }
     }
 

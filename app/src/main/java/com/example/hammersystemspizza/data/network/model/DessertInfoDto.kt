@@ -1,9 +1,9 @@
-package com.example.hammersystemspizza.data.model
+package com.example.hammersystemspizza.data.network.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class PizzaInfoDto(
+data class DessertInfoDto(
     @SerializedName("id")
     @Expose
     val id: Int? = null,
@@ -11,10 +11,6 @@ data class PizzaInfoDto(
     @SerializedName("name")
     @Expose
     val name: String? = null,
-
-    @SerializedName("veg")
-    @Expose
-    val veg: Boolean? = null,
 
     @SerializedName("price")
     @Expose

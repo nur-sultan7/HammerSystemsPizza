@@ -8,10 +8,17 @@ import com.example.hammersystemspizza.domain.entities.Category
 
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
-    private var listOfCategories = mutableListOf<Category>()
+    private var _listOfCategories = mutableListOf<Category>()
+    val listOfCategories: List<Category>
+        get() = _listOfCategories
 
-    fun setListOfCategories(listOfCategories: List<Category>) {
-        this.listOfCategories = listOfCategories.toMutableList()
+    fun addCategoryToList(category: Category) {
+        this._listOfCategories.add(category)
+        notifyDataSetChanged()
+    }
+
+    fun clearCategoryList() {
+        _listOfCategories.clear()
         notifyDataSetChanged()
     }
 
@@ -20,12 +27,12 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = listOfCategories[position]
+        val category = _listOfCategories[position]
         holder.bind(category)
     }
 
     override fun getItemCount(): Int {
-        return listOfCategories.size
+        return _listOfCategories.size
     }
 
     class CategoryViewHolder(private val binding: ItemCategoryBinding) :

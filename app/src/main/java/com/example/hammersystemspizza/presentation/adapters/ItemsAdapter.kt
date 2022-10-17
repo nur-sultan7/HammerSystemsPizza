@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hammersystemspizza.R
 import com.example.hammersystemspizza.databinding.ItemItemBinding
-import com.example.hammersystemspizza.domain.entities.PizzaInfo
+import com.example.hammersystemspizza.domain.entities.CategoryName
+import com.example.hammersystemspizza.domain.entities.ItemInfo
 import com.squareup.picasso.Picasso
 
 
 class ItemsAdapter(
-    private var items: List<PizzaInfo>
+    private var items: List<ItemInfo>
 ) :
     RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
@@ -29,7 +30,7 @@ class ItemsAdapter(
     class ItemViewHolder(private val binding: ItemItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: PizzaInfo) {
+        fun bind(item: ItemInfo) {
             with(binding)
             {
                 tvItemName.text = item.name
@@ -38,9 +39,13 @@ class ItemsAdapter(
                     binding.root.context.getString(R.string.price_txt),
                     item.price
                 )
+                val placeholder = when(item.type){
+                    CategoryName.Pizza->R.drawable.img_default_pizza
+                    CategoryName.Dessert->R.drawable.img_default_dessert
+                }
                 Picasso.get()
                     .load(item.img)
-                    .placeholder(R.drawable.img_default_pizza)
+                    .placeholder(placeholder)
                     .into(ivItem)
             }
         }

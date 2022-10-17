@@ -12,8 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
+
         app:layout_anchor="@+id/rv_content"
         app:layout_anchorGravity="top|center"
         app:layout_constraintEnd_toEndOf="parent"

@@ -4,6 +4,6 @@ import com.example.hammersystemspizza.domain.PizzasRepository
 
 class LoadPizzasDataUseCase(private val repository: PizzasRepository) {
     suspend operator fun invoke() {
-        repository.loadPizzasData()
+        repository.loadPizzasAndDessertsData()
     }
 }

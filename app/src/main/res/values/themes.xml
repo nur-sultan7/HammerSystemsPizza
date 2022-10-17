@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.HammerSystemsPizza" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.HammerSystemsPizza" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
         <!-- Primary brand color. -->
         <item name="android:windowLightStatusBar">true</item>

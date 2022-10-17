@@ -8,6 +8,7 @@
     <string name="item_image">item image</string>
     <string name="price_txt">от %d р</string>
     <string-array name="spinner_categories">
+        <item>Москва</item>
         <item>Грозный</item>
         <item>Алматы</item>
     </string-array>
