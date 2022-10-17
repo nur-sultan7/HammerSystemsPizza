@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fontFamily="@font/roboto"
-    android:textFontWeight="500"
-    android:textSize="16sp"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
+    android:textFontWeight="500"
+    android:textSize="16sp"
     tools:targetApi="p" />
