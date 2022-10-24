@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.hammersystemspizza.databinding.ItemCategoryBinding
 import com.example.hammersystemspizza.domain.entities.Category
 
-
 class CategoriesAdapter :
     RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
     private val _categoryList = mutableListOf<Category>()
