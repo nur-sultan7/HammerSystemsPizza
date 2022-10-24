@@ -8,7 +8,8 @@ import com.example.hammersystemspizza.databinding.ItemCategoryBinding
 import com.example.hammersystemspizza.domain.entities.Category
 
 
-class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
+class CategoriesAdapter :
+    RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
     private val _categoryList = mutableListOf<Category>()
     val categoryList: List<Category>
         get() = _categoryList
@@ -30,7 +31,7 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = _categoryList[position]
+        val category = categoryList[position]
         holder.bind(category)
     }
 
@@ -54,6 +55,6 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
     }
 
     override fun getItemCount(): Int {
-        return _categoryList.size
+       return categoryList.size
     }
 }
