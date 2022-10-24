@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             tabbedListMediator = TabbedListMediator(
                 contentScrolling.rvContent,
                 contentScrolling.tabLayoutMenu,
-                adapter.listOfCategories.indices.toList(),
+                adapter.categoryList.indices.toList(),
                 true
             )
             tabbedListMediator?.attach()

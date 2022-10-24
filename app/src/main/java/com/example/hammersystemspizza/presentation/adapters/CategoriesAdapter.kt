@@ -1,5 +1,6 @@
 package com.example.hammersystemspizza.presentation.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,17 +9,19 @@ import com.example.hammersystemspizza.domain.entities.Category
 
 
 class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
-    private var _listOfCategories = mutableListOf<Category>()
-    val listOfCategories: List<Category>
-        get() = _listOfCategories
+    private val _categoryList = mutableListOf<Category>()
+    val categoryList: List<Category>
+        get() = _categoryList
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addCategoryToList(category: Category) {
-        this._listOfCategories.add(category)
+        _categoryList.add(category)
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun clearCategoryList() {
-        _listOfCategories.clear()
+        _categoryList.clear()
         notifyDataSetChanged()
     }
 
@@ -27,19 +30,17 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        val category = _listOfCategories[position]
+        val category = _categoryList[position]
         holder.bind(category)
-    }
-
-    override fun getItemCount(): Int {
-        return _listOfCategories.size
     }
 
     class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(category: Category) {
-            binding.rvCategory.adapter = ItemsAdapter(category.listOfItems)
+            binding.rvCategory.adapter = ItemsAdapter().apply {
+                submitList(category.listOfItems)
+            }
         }
 
         companion object {
@@ -50,5 +51,9 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHol
                 return CategoryViewHolder(viewBinding)
             }
         }
+    }
+
+    override fun getItemCount(): Int {
+        return _categoryList.size
     }
 }
