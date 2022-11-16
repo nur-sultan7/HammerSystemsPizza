@@ -6,8 +6,9 @@ import com.example.hammersystemspizza.data.network.model.DessertInfoDto
 import com.example.hammersystemspizza.data.network.model.PizzaInfoDto
 import com.example.hammersystemspizza.domain.entities.CategoryName
 import com.example.hammersystemspizza.domain.entities.ItemInfo
+import javax.inject.Inject
 
-class PizzaMapper {
+class PizzaMapper @Inject constructor(){
 
 
     private fun pizzaInfoDtoToModel(dto: PizzaInfoDto): PizzaInfoModel =

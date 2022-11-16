@@ -17,9 +17,19 @@ import com.example.hammersystemspizza.domain.entities.ItemInfo
 import com.example.hammersystemspizza.presentation.adapters.CategoriesAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as PizzasApp).component
+            .mainActivityFactory()
+            .create()
+    }
 
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
@@ -28,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: PizzasViewModel by lazy {
         ViewModelProvider(
             this,
-            ViewModelProvider.AndroidViewModelFactory(application)
+            viewModelFactory
         )[PizzasViewModel::class.java]
     }
 
@@ -38,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     private var tabbedListMediator: TabbedListMediator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)

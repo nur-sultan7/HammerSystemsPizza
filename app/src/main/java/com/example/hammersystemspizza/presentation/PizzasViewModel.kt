@@ -1,28 +1,20 @@
 package com.example.hammersystemspizza.presentation
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.hammersystemspizza.data.database.AppDatabase
-import com.example.hammersystemspizza.data.mapper.PizzaMapper
-import com.example.hammersystemspizza.data.network.ApiFactory
-import com.example.hammersystemspizza.data.repository.PizzasRepositoryImp
 import com.example.hammersystemspizza.domain.entities.Category
 import com.example.hammersystemspizza.domain.entities.ItemInfo
 import com.example.hammersystemspizza.domain.usecases.GetDessertsDataUseCase
 import com.example.hammersystemspizza.domain.usecases.GetPizzasDataUseCase
 import com.example.hammersystemspizza.domain.usecases.LoadPizzasDataUseCase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PizzasViewModel(application: Application) : AndroidViewModel(application) {
-    private val apiService = ApiFactory.apiService
-    private val mapper = PizzaMapper()
-    private val dao = AppDatabase.getInstance(application).pizzasInfoDao()
-    private val repositoryImp = PizzasRepositoryImp(apiService, mapper, dao)
-    private val loadPizzasDataUseCase = LoadPizzasDataUseCase(repositoryImp)
-    private val getPizzasDataUseCase = GetPizzasDataUseCase(repositoryImp)
-    private val getDessertsDataUseCase = GetDessertsDataUseCase(repositoryImp)
-
+class PizzasViewModel @Inject constructor(
+    private val loadPizzasDataUseCase: LoadPizzasDataUseCase,
+    private val getPizzasDataUseCase: GetPizzasDataUseCase,
+    private val getDessertsDataUseCase: GetDessertsDataUseCase
+) : ViewModel() {
 
     init {
         viewModelScope.launch {
@@ -30,7 +22,6 @@ class PizzasViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    @JvmName("getPizzasData1")
     fun getPizzasData() = getPizzasDataUseCase.invoke()
 
     fun getDessertsData() = getDessertsDataUseCase.invoke()

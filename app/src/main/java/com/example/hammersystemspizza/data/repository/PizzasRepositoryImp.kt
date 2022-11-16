@@ -8,8 +8,9 @@ import com.example.hammersystemspizza.data.mapper.PizzaMapper
 import com.example.hammersystemspizza.data.network.ApiService
 import com.example.hammersystemspizza.domain.PizzasRepository
 import com.example.hammersystemspizza.domain.entities.ItemInfo
+import javax.inject.Inject
 
-class PizzasRepositoryImp(
+class PizzasRepositoryImp @Inject constructor(
     private val apiService: ApiService,
     private val mapper: PizzaMapper,
     private val dao: PizzasInfoDao
