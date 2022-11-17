@@ -6,7 +6,8 @@ import androidx.work.ExistingWorkPolicy
 import androidx.work.WorkManager
 import com.example.hammersystemspizza.data.database.PizzasInfoDao
 import com.example.hammersystemspizza.data.mapper.PizzaMapper
-import com.example.hammersystemspizza.data.worker.RefreshDataWorker
+import com.example.hammersystemspizza.data.worker.RefreshDessertDataWorker
+import com.example.hammersystemspizza.data.worker.RefreshPizzasDataWorker
 import com.example.hammersystemspizza.domain.PizzasRepository
 import com.example.hammersystemspizza.domain.entities.ItemInfo
 import javax.inject.Inject
@@ -20,9 +21,14 @@ class PizzasRepositoryImp @Inject constructor(
 
     override suspend fun loadPizzasAndDessertsData() {
         workManager.enqueueUniqueWork(
-            RefreshDataWorker.NAME,
+            RefreshPizzasDataWorker.NAME,
             ExistingWorkPolicy.REPLACE,
-            RefreshDataWorker.makeRequest()
+            RefreshPizzasDataWorker.makeRequest()
+        )
+        workManager.enqueueUniqueWork(
+            RefreshDessertDataWorker.NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDessertDataWorker.makeRequest()
         )
     }
 

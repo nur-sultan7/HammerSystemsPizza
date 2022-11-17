@@ -1,6 +1,7 @@
-package com.example.hammersystemspizza.di
+package com.example.hammersystemspizza.di.modules
 
 import androidx.lifecycle.ViewModel
+import com.example.hammersystemspizza.di.keys.ViewModelKey
 import com.example.hammersystemspizza.presentation.PizzasViewModel
 import dagger.Binds
 import dagger.Module

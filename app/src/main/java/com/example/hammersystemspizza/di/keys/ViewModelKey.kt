@@ -1,4 +1,4 @@
-package com.example.hammersystemspizza.di
+package com.example.hammersystemspizza.di.keys
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

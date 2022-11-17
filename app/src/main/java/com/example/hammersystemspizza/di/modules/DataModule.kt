@@ -1,4 +1,4 @@
-package com.example.hammersystemspizza.di
+package com.example.hammersystemspizza.di.modules
 
 import android.app.Application
 import androidx.work.WorkManager
@@ -7,6 +7,7 @@ import com.example.hammersystemspizza.data.database.PizzasInfoDao
 import com.example.hammersystemspizza.data.network.ApiFactory
 import com.example.hammersystemspizza.data.network.ApiService
 import com.example.hammersystemspizza.data.repository.PizzasRepositoryImp
+import com.example.hammersystemspizza.di.ApplicationScope
 import com.example.hammersystemspizza.domain.PizzasRepository
 import dagger.Binds
 import dagger.Module
