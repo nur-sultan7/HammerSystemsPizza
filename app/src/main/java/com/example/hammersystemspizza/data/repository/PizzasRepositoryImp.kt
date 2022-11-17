@@ -18,18 +18,7 @@ class PizzasRepositoryImp @Inject constructor(
 
     override suspend fun loadPizzasAndDessertsData() {
 
-        try {
-            val listOfPizzaInfoDto = apiService.getPizzasData().toList()
-            dao.insertPizzasInfoList(mapper.listPizzaInfoDtoToModel(listOfPizzaInfoDto))
-        } catch (e: Exception) {
-            Log.d("Pizzas Loading Exception:", e.toString())
-        }
-        try {
-            val listOfDessertInfoDto = apiService.getDessertsData().toList()
-            dao.insertDessertInfoList(mapper.listDessertInfoDtoToModel(listOfDessertInfoDto))
-        } catch (e: Exception) {
-            Log.d("Dessert Loading Exception:", e.toString())
-        }
+
     }
 
     override fun getPizzasData(): LiveData<List<ItemInfo>> {
