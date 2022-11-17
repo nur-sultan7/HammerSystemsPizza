@@ -27,11 +27,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <provider
             android:authorities="androidx.work.WorkManagerInitializer"
             android:name="androidx.startup.InitializationProvider"
             tools:node="remove"
-            tools:replace="true" />
+            tools:replace="android:authorities"
+            />
     </application>
 
 </manifest>

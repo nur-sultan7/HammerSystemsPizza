@@ -16,20 +16,21 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/ivItem"
                 android:layout_width="135dp"
                 android:layout_height="135dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:contentDescription="@string/item_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:ignore="ImageContrastCheck"
                 tools:srcCompat="@tools:sample/avatars" />
 
@@ -38,14 +39,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="22dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black_txt"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivItem"
                 app:layout_constraintTop_toTopOf="@+id/ivItem"
                 tools:targetApi="p"
                 tools:text="Нежный лосось" />
+
 
             <TextView
                 android:id="@+id/tvDescription"
@@ -58,21 +63,26 @@
                 android:textColor="@color/gray_description_text"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tvItemName"
                 app:layout_constraintTop_toBottomOf="@+id/tvItemName"
                 tools:ignore="TextContrastCheck"
                 tools:targetApi="p"
                 tools:text="Лосось, томаты, оливки,соус песто,помидорки черри" />
 
-
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:layout_gravity="top|center_horizontal"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="6dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/ivItem"
                 app:layout_constraintEnd_toEndOf="@+id/tvDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+                app:layout_constraintVertical_bias="0.0"
                 app:strokeColor="@color/pinky"
                 app:strokeWidth="1dp">
 

@@ -1,6 +1,7 @@
 package com.example.hammersystemspizza.di
 
 import android.app.Application
+import androidx.work.WorkManager
 import com.example.hammersystemspizza.data.database.AppDatabase
 import com.example.hammersystemspizza.data.database.PizzasInfoDao
 import com.example.hammersystemspizza.data.network.ApiFactory
@@ -22,6 +23,12 @@ interface DataModule {
         @Provides
         fun provideApiService(): ApiService {
             return ApiFactory.apiService
+        }
+
+        @ApplicationScope
+        @Provides
+        fun provideWorkManager(application: Application): WorkManager {
+            return WorkManager.getInstance(application)
         }
 
         @ApplicationScope

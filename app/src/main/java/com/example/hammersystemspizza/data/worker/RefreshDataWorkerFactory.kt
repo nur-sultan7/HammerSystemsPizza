@@ -7,8 +7,9 @@ import androidx.work.WorkerParameters
 import com.example.hammersystemspizza.data.database.PizzasInfoDao
 import com.example.hammersystemspizza.data.mapper.PizzaMapper
 import com.example.hammersystemspizza.data.network.ApiService
+import javax.inject.Inject
 
-class RefreshDataWorkerFactory(
+class RefreshDataWorkerFactory @Inject constructor(
     private val apiService: ApiService,
     private val mapper: PizzaMapper,
     private val dao: PizzasInfoDao

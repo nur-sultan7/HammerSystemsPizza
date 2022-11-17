@@ -17,7 +17,6 @@ class RefreshDataWorker(
     private val dao: PizzasInfoDao
 ): CoroutineWorker(context, workerParameters) {
     override suspend fun doWork(): Result {
-
         try {
             val listOfPizzaInfoDto = apiService.getPizzasData().toList()
             dao.insertPizzasInfoList(mapper.listPizzaInfoDtoToModel(listOfPizzaInfoDto))

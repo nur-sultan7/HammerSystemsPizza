@@ -7,7 +7,7 @@ import retrofit2.http.Headers
 
 interface ApiService {
     companion object {
-        const val API_KEY = "X-RapidAPI-Key: 26cd5b37f3mshbbff6e4e276a9fep19b222jsn9cd47b07c672"
+        const val API_KEY = "X-RapidAPI-Key: 10bd0a786emshb5ad72fd0dcb6e6p14f1cajsn20ffe75d6a3e"
         const val API_HOST = "X-RapidAPI-Host: pizza-and-desserts.p.rapidapi.com"
     }
 

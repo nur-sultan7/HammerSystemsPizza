@@ -1,24 +1,29 @@
 package com.example.hammersystemspizza.data.repository
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.example.hammersystemspizza.data.database.PizzasInfoDao
 import com.example.hammersystemspizza.data.mapper.PizzaMapper
-import com.example.hammersystemspizza.data.network.ApiService
+import com.example.hammersystemspizza.data.worker.RefreshDataWorker
 import com.example.hammersystemspizza.domain.PizzasRepository
 import com.example.hammersystemspizza.domain.entities.ItemInfo
 import javax.inject.Inject
 
 class PizzasRepositoryImp @Inject constructor(
-    private val apiService: ApiService,
     private val mapper: PizzaMapper,
-    private val dao: PizzasInfoDao
+    private val dao: PizzasInfoDao,
+    private val workManager: WorkManager
 ) : PizzasRepository {
 
+
     override suspend fun loadPizzasAndDessertsData() {
-
-
+        workManager.enqueueUniqueWork(
+            RefreshDataWorker.NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDataWorker.makeRequest()
+        )
     }
 
     override fun getPizzasData(): LiveData<List<ItemInfo>> {
